@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive_helper.dart';
+import '../widgets/animations/hover_card.dart';
 
 class ResponsiveServicesSection
     extends StatelessWidget {
@@ -28,17 +29,24 @@ class ResponsiveServicesSection
             CrossAxisAlignment.start,
         children: [
           const Text(
-            "Services",
+            "SERVICES",
             style: TextStyle(
-              fontSize: 38,
-              fontWeight:
-                  FontWeight.bold,
-              color:
-                  AppColors.primary,
+              color: AppColors.primary,
+              letterSpacing: 3,
             ),
           ),
 
-          const SizedBox(height: 30),
+          const SizedBox(height: 12),
+
+          const Text(
+            "What I Can Build",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+            ),
+          ),
+
+          const SizedBox(height: 35),
 
           GridView.count(
             shrinkWrap: true,
@@ -48,24 +56,30 @@ class ResponsiveServicesSection
                 isMobile ? 1 : 3,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
-            childAspectRatio: 1.2,
+            childAspectRatio: 1.1,
             children: const [
               _ServiceCard(
                 icon:
                     Icons.phone_android,
                 title:
                     "Flutter Apps",
+                desc:
+                    "Cross-platform mobile applications",
               ),
               _ServiceCard(
                 icon:
                     Icons.design_services,
                 title:
-                    "UI Design",
+                    "Responsive UI",
+                desc:
+                    "Modern and adaptive interfaces",
               ),
               _ServiceCard(
                 icon: Icons.api,
                 title:
                     "API Integration",
+                desc:
+                    "REST API and Firebase integration",
               ),
             ],
           ),
@@ -79,48 +93,101 @@ class _ServiceCard
     extends StatelessWidget {
   final IconData icon;
   final String title;
+  final String desc;
 
   const _ServiceCard({
     required this.icon,
     required this.title,
+    required this.desc,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        color:
-            AppColors.cardColor,
-        borderRadius:
-            BorderRadius.circular(
-          20,
-        ),
-      ),
-      child: Column(
-        mainAxisAlignment:
-            MainAxisAlignment.center,
-        children: [
-          Icon(
-            icon,
-            size: 50,
+    return HoverCard(
+      child: Container(
+        padding:
+            const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          borderRadius:
+              BorderRadius.circular(
+            24,
+          ),
+          gradient:
+              LinearGradient(
+            colors: [
+              Colors.white
+                  .withOpacity(
+                0.05,
+              ),
+              Colors.white
+                  .withOpacity(
+                0.02,
+              ),
+            ],
+          ),
+          border: Border.all(
             color:
-                AppColors.primary,
+                AppColors.border,
           ),
-
-          const SizedBox(
-            height: 20,
-          ),
-
-          Text(
-            title,
-            style:
-                const TextStyle(
-              fontSize: 20,
-              fontWeight:
-                  FontWeight.bold,
+        ),
+        child: Column(
+          mainAxisAlignment:
+              MainAxisAlignment.center,
+          children: [
+            Container(
+              width: 75,
+              height: 75,
+              decoration:
+                  BoxDecoration(
+                color:
+                    AppColors.primary
+                        .withOpacity(
+                  0.12,
+                ),
+                borderRadius:
+                    BorderRadius
+                        .circular(
+                  20,
+                ),
+              ),
+              child: Icon(
+                icon,
+                size: 40,
+                color: AppColors.primary,
+              ),
             ),
-          ),
-        ],
+
+            const SizedBox(
+              height: 20,
+            ),
+
+            Text(
+              title,
+              style:
+                  const TextStyle(
+                fontSize: 22,
+                fontWeight:
+                    FontWeight.bold,
+              ),
+            ),
+
+            const SizedBox(
+              height: 10,
+            ),
+
+            Text(
+              desc,
+              textAlign:
+                  TextAlign.center,
+              style:
+                  const TextStyle(
+                color:
+                    AppColors.grey,
+                height: 1.5,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

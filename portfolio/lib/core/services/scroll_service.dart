@@ -4,9 +4,7 @@ class ScrollService {
   static final ScrollController controller =
       ScrollController();
 
-  static void scrollTo(
-    GlobalKey key,
-  ) {
+  static void scrollTo(GlobalKey key) {
     final context = key.currentContext;
 
     if (context == null) return;
@@ -14,9 +12,9 @@ class ScrollService {
     Scrollable.ensureVisible(
       context,
       duration: const Duration(
-        milliseconds: 900,
+        milliseconds: 800,
       ),
-      curve: Curves.easeInOutCubic,
+      curve: Curves.easeInOut,
       alignment: 0.05,
     );
   }

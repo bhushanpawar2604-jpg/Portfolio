@@ -8,21 +8,20 @@ class StatsSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Wrap(
-      alignment: WrapAlignment.center,
-      spacing: 30,
-      runSpacing: 20,
+      spacing: 35,
+      runSpacing: 25,
       children: const [
         _StatCard(
-          value: "10+",
+          value: "5+",
           title: "Projects",
         ),
         _StatCard(
-          value: "1",
-          title: "Internship",
+          value: "2+",
+          title: "Years Learning",
         ),
         _StatCard(
-          value: "5+",
-          title: "Certificates",
+          value: "24/7",
+          title: "Learning",
         ),
       ],
     );
@@ -40,33 +39,25 @@ class _StatCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 180,
-      padding: const EdgeInsets.all(24),
-      decoration: BoxDecoration(
-        color: AppColors.cardColor,
-        borderRadius:
-            BorderRadius.circular(20),
-      ),
-      child: Column(
-        children: [
-          Text(
-            value,
-            style: const TextStyle(
-              fontSize: 32,
-              fontWeight: FontWeight.bold,
-              color: AppColors.primary,
-            ),
+    return Column(
+      crossAxisAlignment:
+          CrossAxisAlignment.start,
+      children: [
+        Text(
+          value,
+          style: const TextStyle(
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
+            color: AppColors.primary,
           ),
-          const SizedBox(height: 10),
-          Text(
-            title,
-            style: const TextStyle(
-              color: AppColors.grey,
-            ),
+        ),
+        Text(
+          title,
+          style: const TextStyle(
+            color: AppColors.grey,
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

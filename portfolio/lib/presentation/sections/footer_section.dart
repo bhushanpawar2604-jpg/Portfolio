@@ -35,7 +35,7 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 10),
 
           const Text(
-            "Flutter Developer • Mobile Apps • Flutter Web",
+            "Flutter Developer • Mobile Apps • Web Apps • Firebase",
             style: TextStyle(
               color: AppColors.grey,
             ),
@@ -44,7 +44,7 @@ class FooterSection extends StatelessWidget {
           const SizedBox(height: 20),
 
           Text(
-            "© 2026 ${PortfolioConfig.name}. All Rights Reserved.",
+            "© 2026 ${PortfolioConfig.name}. Built with Flutter Web",
             style: const TextStyle(
               color: AppColors.grey,
             ),

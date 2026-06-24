@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../core/services/scroll_service.dart';
+import '../../core/theme/app_colors.dart';
 
 import '../sections/about_section.dart';
 import '../sections/achievements_section.dart';
@@ -30,33 +31,46 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton:
           const ScrollToTopButton(),
 
-      body: Column(
-        children: [
-          const TopNavbar(),
+      body: Container(
+        decoration: const BoxDecoration(
+  gradient: LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [
+      AppColors.gradient1,
+      AppColors.gradient3,
+      AppColors.gradient2,
+    ],
+  ),
+),
+        child: Column(
+          children: [
+            const TopNavbar(),
 
-          Expanded(
-            child: SingleChildScrollView(
-              controller:
-                  ScrollService.controller,
-              child: const Column(
-                children: [
-                  HeroSection(),
-                  AboutSection(),
-                  SkillsSection(),
-                  ResponsiveServicesSection(),
-                  ProjectsSection(),
-                  ExperienceSection(),
-                  EducationSection(),
-                  CertificationsSection(),
-                  AchievementsSection(),
-                  TechStackSection(),
-                  ContactSection(),
-                  FooterSection(),
-                ],
+            Expanded(
+              child: SingleChildScrollView(
+                controller:
+                    ScrollService.controller,
+                child: const Column(
+                  children: [
+                    HeroSection(),
+                    AboutSection(),
+                    SkillsSection(),
+                    ResponsiveServicesSection(),
+                    ProjectsSection(),
+                    ExperienceSection(),
+                    EducationSection(),
+                    CertificationsSection(),
+                    AchievementsSection(),
+                    TechStackSection(),
+                    ContactSection(),
+                    FooterSection(),
+                  ],
+                ),
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -5,8 +5,8 @@ class PortfolioConfig {
 
   static const String role = "Flutter Developer";
 
-  static const String shortBio =
-      "Passionate Flutter Developer creating responsive and scalable applications.";
+    static const String shortBio =
+"I am a Flutter Developer passionate about building high-performance mobile and web applications using Flutter. I enjoy creating responsive user interfaces, integrating APIs, working with Firebase and continuously learning modern technologies.";
 
   static const String email =
       "bhushanpawar2604@gmail.com";
@@ -25,6 +25,9 @@ class PortfolioConfig {
     "Mobile App Developer",
     "UI Developer",
     "Flutter Web Developer",
+    "Cross Platform Developer",
+    "Open Source Contributor",
+    "Problem Solver"
   ];
 
   static final navItems = [

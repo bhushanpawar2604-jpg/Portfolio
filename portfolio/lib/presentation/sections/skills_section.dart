@@ -1,137 +1,238 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../core/constants/section_ids.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive_helper.dart';
 
 class SkillsSection extends StatelessWidget {
-const SkillsSection({super.key});
+  const SkillsSection({super.key});
 
-final List<Map<String, String>> skills = const [
-{
-"name": "Flutter",
-"level": "95%",
-},
-{
-"name": "Dart",
-"level": "90%",
-},
-{
-"name": "Firebase",
-"level": "85%",
-},
-{
-"name": "REST API",
-"level": "85%",
-},
-{
-"name": "Provider",
-"level": "90%",
-},
-{
-"name": "Git & GitHub",
-"level": "88%",
-},
-];
+  static const List<Map<String, dynamic>> skills = [
+    {
+      "name": "Flutter",
+      "level": 95,
+      "icon": FontAwesomeIcons.flutter,
+      "color": AppColors.primary,
+    },
+    {
+      "name": "Dart",
+      "level": 90,
+      "icon": FontAwesomeIcons.code,
+      "color": AppColors.accentPink,
+    },
+    {
+      "name": "Firebase",
+      "level": 88,
+      "icon": FontAwesomeIcons.fire,
+      "color": AppColors.accentOrange,
+    },
+    {
+      "name": "REST API",
+      "level": 92,
+      "icon": FontAwesomeIcons.cloud,
+      "color": AppColors.secondary,
+    },
+    {
+      "name": "Git",
+      "level": 90,
+      "icon": FontAwesomeIcons.gitAlt,
+      "color": AppColors.accentOrange,
+    },
+    {
+      "name": "GitHub",
+      "level": 92,
+      "icon": FontAwesomeIcons.github,
+      "color": Colors.white,
+    },
+  ];
 
-@override
-Widget build(BuildContext context) {
-final isMobile = ResponsiveHelper.isMobile(context);
+  @override
+  Widget build(BuildContext context) {
+    final isMobile = ResponsiveHelper.isMobile(context);
 
+    return Container(
+      key: SectionIds.skills,
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 20 : 40,
+        vertical: 90,
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "MY SKILLS",
+            style: TextStyle(
+              color: AppColors.primary,
+              letterSpacing: 3,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
 
-return Container(
-  width: double.infinity,
-  padding: const EdgeInsets.symmetric(
-    horizontal: 30,
-    vertical: 80,
-  ),
-  child: Column(
-    crossAxisAlignment: CrossAxisAlignment.start,
-    children: [
-      const Text(
-        "Skills",
-        style: TextStyle(
-          fontSize: 38,
-          fontWeight: FontWeight.bold,
-          color: AppColors.primary,
+          const SizedBox(height: 10),
+
+          const Text(
+            "Technologies I Work With",
+            style: TextStyle(
+              fontSize: 42,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          const Text(
+            "Tools and technologies I use to create scalable and responsive Flutter applications.",
+            style: TextStyle(
+              color: AppColors.grey,
+              height: 1.7,
+            ),
+          ),
+
+          const SizedBox(height: 50),
+
+          GridView.builder(
+            shrinkWrap: true,
+            physics: const NeverScrollableScrollPhysics(),
+            itemCount: skills.length,
+            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: isMobile ? 1 : 3,
+              crossAxisSpacing: 25,
+              mainAxisSpacing: 25,
+              childAspectRatio: isMobile ? 1.6 : 1.2,
+            ),
+            itemBuilder: (context, index) {
+              return SkillCard(
+                title: skills[index]["name"],
+                level: skills[index]["level"],
+                icon: skills[index]["icon"],
+                color: skills[index]["color"],
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class SkillCard extends StatefulWidget {
+  final String title;
+  final int level;
+  final IconData icon;
+  final Color color;
+
+  const SkillCard({
+    super.key,
+    required this.title,
+    required this.level,
+    required this.icon,
+    required this.color,
+  });
+
+  @override
+  State<SkillCard> createState() => _SkillCardState();
+}
+
+class _SkillCardState extends State<SkillCard> {
+  bool hovered = false;
+
+  @override
+  Widget build(BuildContext context) {
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() => hovered = true);
+      },
+      onExit: (_) {
+        setState(() => hovered = false);
+      },
+      child: AnimatedContainer(
+        duration: const Duration(milliseconds: 250),
+        transform: Matrix4.identity()
+          ..translate(
+            0.0,
+            hovered ? -10.0 : 0.0,
+          ),
+        padding: const EdgeInsets.all(24),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(28),
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.white.withOpacity(0.05),
+              Colors.white.withOpacity(0.02),
+            ],
+          ),
+          border: Border.all(
+            color: hovered
+                ? widget.color.withOpacity(0.6)
+                : AppColors.border,
+          ),
+          boxShadow: hovered
+              ? [
+                  BoxShadow(
+                    color: widget.color.withOpacity(0.25),
+                    blurRadius: 35,
+                    spreadRadius: 3,
+                  ),
+                ]
+              : [],
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            CircleAvatar(
+              radius: 28,
+              backgroundColor:
+                  widget.color.withOpacity(0.15),
+              child: Icon(
+                widget.icon,
+                color: widget.color,
+                size: 26,
+              ),
+            ),
+
+            const Spacer(),
+
+            Text(
+              widget.title,
+              style: const TextStyle(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
+            ),
+
+            const SizedBox(height: 15),
+
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20),
+              child: LinearProgressIndicator(
+                minHeight: 8,
+                value: widget.level / 100,
+                backgroundColor: Colors.white10,
+                valueColor: AlwaysStoppedAnimation(
+                  widget.color,
+                ),
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            Text(
+              "${widget.level}%",
+              style: TextStyle(
+                color: widget.color,
+                fontWeight: FontWeight.bold,
+                fontSize: 16,
+              ),
+            ),
+          ],
         ),
       ),
-
-      const SizedBox(height: 30),
-
-      GridView.builder(
-        shrinkWrap: true,
-        physics: const NeverScrollableScrollPhysics(),
-        itemCount: skills.length,
-        gridDelegate:
-            SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: isMobile ? 1 : 3,
-          crossAxisSpacing: 20,
-          mainAxisSpacing: 20,
-          childAspectRatio: 2.2,
-        ),
-        itemBuilder: (context, index) {
-          return SkillCard(
-            title: skills[index]["name"]!,
-            level: skills[index]["level"]!,
-          );
-        },
-      ),
-    ],
-  ),
-);
-
-
-}
-}
-
-class SkillCard extends StatelessWidget {
-final String title;
-final String level;
-
-const SkillCard({
-super.key,
-required this.title,
-required this.level,
-});
-
-@override
-Widget build(BuildContext context) {
-return Container(
-padding: const EdgeInsets.all(20),
-decoration: BoxDecoration(
-color: AppColors.cardColor,
-borderRadius: BorderRadius.circular(20),
-border: Border.all(
-color: AppColors.border,
-),
-),
-child: Column(
-mainAxisAlignment:
-MainAxisAlignment.center,
-children: [
-Text(
-title,
-style: const TextStyle(
-fontSize: 22,
-fontWeight: FontWeight.bold,
-color: AppColors.white,
-),
-),
-
-
-      const SizedBox(height: 10),
-
-      Text(
-        level,
-        style: const TextStyle(
-          color: AppColors.primary,
-          fontSize: 18,
-          fontWeight: FontWeight.bold,
-        ),
-      ),
-    ],
-  ),
-);
-
-
-}
+    );
+  }
 }

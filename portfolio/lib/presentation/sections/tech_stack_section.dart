@@ -1,71 +1,204 @@
 import 'package:flutter/material.dart';
+
 import '../../core/theme/app_colors.dart';
+import '../../core/utils/responsive_helper.dart';
+import '../widgets/animations/hover_card.dart';
 
 class TechStackSection extends StatelessWidget {
-const TechStackSection({super.key});
+  const TechStackSection({super.key});
 
-final List<String> technologies = const [
-"Flutter",
-"Dart",
-"Firebase",
-"Provider",
-"REST API",
-"Git",
-"GitHub",
-"VS Code",
-"Android Studio",
-"Figma",
-];
+  final List<Map<String, dynamic>> technologies = const [
+    {
+      "name": "Flutter",
+      "icon": Icons.flutter_dash,
+    },
+    {
+      "name": "Dart",
+      "icon": Icons.code,
+    },
+    {
+      "name": "Firebase",
+      "icon": Icons.local_fire_department,
+    },
+    {
+      "name": "REST API",
+      "icon": Icons.api,
+    },
+    {
+      "name": "Git",
+      "icon": Icons.source,
+    },
+    {
+      "name": "GitHub",
+      "icon": Icons.code_off,
+    },
+    {
+      "name": "VS Code",
+      "icon": Icons.computer,
+    },
+    {
+      "name": "Android Studio",
+      "icon": Icons.android,
+    },
+    {
+      "name": "Figma",
+      "icon": Icons.design_services,
+    },
+    {
+      "name": "Provider",
+      "icon": Icons.account_tree,
+    },
+  ];
 
-@override
-Widget build(BuildContext context) {
-return Container(
-width: double.infinity,
-padding: const EdgeInsets.symmetric(
-horizontal: 30,
-vertical: 80,
-),
-child: Column(
-crossAxisAlignment: CrossAxisAlignment.start,
-children: [
-const Text(
-"Tech Stack",
-style: TextStyle(
-fontSize: 38,
-fontWeight: FontWeight.bold,
-color: AppColors.primary,
-),
-),
-const SizedBox(height: 30),
-Wrap(
-spacing: 15,
-runSpacing: 15,
-children: technologies.map(
-(tech) {
-return Container(
-padding: const EdgeInsets.symmetric(
-horizontal: 20,
-vertical: 12,
-),
-decoration: BoxDecoration(
-color: AppColors.cardColor,
-borderRadius: BorderRadius.circular(30),
-border: Border.all(
-color: AppColors.border,
-),
-),
-child: Text(
-tech,
-style: const TextStyle(
-fontWeight: FontWeight.w500,
-),
-),
-);
-},
-).toList(),
-),
-],
-),
-);
-}
+  @override
+  Widget build(BuildContext context) {
+    final isMobile =
+        ResponsiveHelper.isMobile(context);
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.symmetric(
+        horizontal: 30,
+        vertical: 80,
+      ),
+      child: Column(
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
+        children: [
+          const Text(
+            "TECH STACK",
+            style: TextStyle(
+              color: AppColors.primary,
+              letterSpacing: 3,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+
+          const SizedBox(height: 12),
+
+          const Text(
+            "Technologies I Use",
+            style: TextStyle(
+              fontSize: 40,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+
+          const SizedBox(height: 35),
+
+          GridView.builder(
+            shrinkWrap: true,
+            physics:
+                const NeverScrollableScrollPhysics(),
+            itemCount: technologies.length,
+            gridDelegate:
+                SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount:
+                  isMobile ? 2 : 4,
+              crossAxisSpacing: 20,
+              mainAxisSpacing: 20,
+              childAspectRatio: 1.15,
+            ),
+            itemBuilder: (context, index) {
+              final tech =
+                  technologies[index];
+
+              return HoverCard(
+                child: Container(
+                  decoration: BoxDecoration(
+                    gradient:
+                        LinearGradient(
+                      begin:
+                          Alignment.topLeft,
+                      end: Alignment
+                          .bottomRight,
+                      colors: [
+                        Colors.white
+                            .withOpacity(
+                          0.05,
+                        ),
+                        Colors.white
+                            .withOpacity(
+                          0.02,
+                        ),
+                      ],
+                    ),
+                    borderRadius:
+                        BorderRadius
+                            .circular(
+                      24,
+                    ),
+                    border: Border.all(
+                      color:
+                          AppColors.border,
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: AppColors
+                            .primary
+                            .withOpacity(
+                          0.08,
+                        ),
+                        blurRadius: 20,
+                      ),
+                    ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment:
+                        MainAxisAlignment
+                            .center,
+                    children: [
+                      Container(
+                        width: 65,
+                        height: 65,
+                        decoration:
+                            BoxDecoration(
+                          color: AppColors
+                              .primary
+                              .withOpacity(
+                            0.12,
+                          ),
+                          borderRadius:
+                              BorderRadius
+                                  .circular(
+                            18,
+                          ),
+                        ),
+                        child: Icon(
+                          tech["icon"],
+                          size: 34,
+                          color: AppColors
+                              .primary,
+                        ),
+                      ),
+
+                      const SizedBox(
+                        height: 18,
+                      ),
+
+                      Text(
+                        tech["name"],
+                        textAlign:
+                            TextAlign.center,
+                        style:
+                            const TextStyle(
+                          color:
+                              Colors.white,
+                          fontWeight:
+                              FontWeight
+                                  .w600,
+                          fontSize: 15,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              );
+            },
+          ),
+        ],
+      ),
+    );
+  }
 }

@@ -3,72 +3,132 @@ import 'package:flutter/material.dart';
 import '../../core/constants/section_ids.dart';
 import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive_helper.dart';
+
 import '../widgets/animations/hover_card.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
 
-  final List<Map<String, String>> projects = const [
-    {
-      "title": "E-Commerce App",
-      "description":
-          "A complete Flutter e-commerce application with cart, authentication and responsive UI.",
-      "image": "assets/images/project1.png",
-    },
-    {
-      "title": "Moodify Music App",
-      "description":
-          "A music recommendation application based on user mood with modern UI.",
-      "image": "assets/images/project2.png",
-    },
-    {
-      "title": "Portfolio Website",
-      "description":
-          "Personal responsive portfolio website built using Flutter Web.",
-      "image": "assets/images/project3.png",
-    },
-  ];
+static const List<Map<String, dynamic>> projects = [
+  {
+    "title": "E-Commerce App",
+    "description":
+        "Full-featured Flutter e-commerce application with authentication, cart management, wishlist, Firebase backend and responsive UI.",
+    "image": "assets/images/project1.png",
+    "tech": [
+      "Flutter",
+      "Firebase",
+      "Provider",
+      "REST API"
+    ],
+    "github": "https://github.com/yourrepo",
+    "live": "",
+  },
+  {
+    "title": "Moodify Music App",
+    "description":
+        "Mood-based music recommendation application with modern UI, personalized suggestions and smooth user experience.",
+    "image": "assets/images/project2.png",
+    "tech": [
+      "Flutter",
+      "Firebase",
+      "REST API"
+    ],
+    "github": "https://github.com/yourrepo",
+    "live": "",
+  },
+  {
+    "title": "Portfolio Website",
+    "description":
+        "Responsive Flutter Web portfolio showcasing projects, skills, experience and interactive animations.",
+    "image": "assets/images/project3.png",
+    "tech": [
+      "Flutter Web",
+      "Dart",
+      "Responsive UI"
+    ],
+    "github": "https://github.com/yourrepo",
+    "live": "",
+  },
+];
 
   @override
   Widget build(BuildContext context) {
-    final isMobile = ResponsiveHelper.isMobile(context);
+    final isMobile =
+        ResponsiveHelper.isMobile(context);
 
     return Container(
       key: SectionIds.projects,
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(
-        horizontal: 30,
-        vertical: 80,
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 20 : 40,
+        vertical: 90,
       ),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment:
+            CrossAxisAlignment.start,
         children: [
           const Text(
-            "Projects",
+            "MY PROJECTS",
             style: TextStyle(
-              fontSize: 38,
-              fontWeight: FontWeight.bold,
               color: AppColors.primary,
+              letterSpacing: 3,
+              fontWeight: FontWeight.w600,
             ),
           ),
-          const SizedBox(height: 30),
+
+          const SizedBox(height: 12),
+
+          const Text(
+            "Featured Work",
+            style: TextStyle(
+              fontSize: 42,
+              fontWeight: FontWeight.bold,
+              color: Colors.white,
+            ),
+          ),
+
+          const SizedBox(height: 20),
+
+          const Text(
+            "Projects that showcase my Flutter development skills and problem solving approach.",
+            style: TextStyle(
+              color: AppColors.grey,
+              height: 1.7,
+            ),
+          ),
+
+          const SizedBox(height: 50),
+
           GridView.builder(
             shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
+            physics:
+                const NeverScrollableScrollPhysics(),
             itemCount: projects.length,
             gridDelegate:
                 SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: isMobile ? 1 : 3,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: isMobile ? 0.9 : 0.85,
+              crossAxisCount:
+                  isMobile ? 1 : 2,
+              crossAxisSpacing: 25,
+              mainAxisSpacing: 25,
+              childAspectRatio:
+                  isMobile ? 0.82 : 0.92,
             ),
             itemBuilder: (context, index) {
               return ProjectCard(
-                title: projects[index]["title"]!,
+                title:
+                    projects[index]["title"],
                 description:
-                    projects[index]["description"]!,
-                image: projects[index]["image"]!,
+                    projects[index]
+                        ["description"],
+                image:
+                    projects[index]["image"],
+                tech:
+                    projects[index]["tech"],
+                github:
+                    projects[index]["github"],
+                live:
+                    projects[index]["live"],  
               );
             },
           ),
@@ -78,125 +138,202 @@ class ProjectsSection extends StatelessWidget {
   }
 }
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   final String title;
   final String description;
   final String image;
+  final List tech;
+  final String github;
+  final String live;
 
   const ProjectCard({
     super.key,
     required this.title,
     required this.description,
     required this.image,
+    required this.tech,
+    required this.github,
+    required this.live,
   });
 
   @override
+  State<ProjectCard> createState() =>
+      _ProjectCardState();
+}
+
+class _ProjectCardState
+    extends State<ProjectCard> {
+  bool hovered = false;
+
+  @override
   Widget build(BuildContext context) {
-    return HoverCard(
-      child: Container(
-        decoration: BoxDecoration(
-          color: AppColors.cardColor,
-          borderRadius: BorderRadius.circular(20),
-          border: Border.all(
-            color: AppColors.border,
+    return MouseRegion(
+      onEnter: (_) {
+        setState(() {
+          hovered = true;
+        });
+      },
+      onExit: (_) {
+        setState(() {
+          hovered = false;
+        });
+      },
+      child: HoverCard(
+        child: AnimatedContainer(
+          duration:
+              const Duration(milliseconds: 250),
+
+          decoration: BoxDecoration(
+            borderRadius:
+                BorderRadius.circular(28),
+
+            gradient: LinearGradient(
+              begin: Alignment.topLeft,
+              end: Alignment.bottomRight,
+              colors: [
+                Colors.white.withOpacity(
+                  0.06,
+                ),
+                Colors.white.withOpacity(
+                  0.03,
+                ),
+              ],
+            ),
+
+            border: Border.all(
+              color: hovered
+                  ? AppColors.primary
+                      .withOpacity(0.45)
+                  : AppColors.border,
+            ),
+
+            boxShadow: hovered
+                ? [
+                    BoxShadow(
+                      color: AppColors.primary
+                          .withOpacity(0.18),
+                      blurRadius: 40,
+                      spreadRadius: 3,
+                    ),
+                  ]
+                : [],
           ),
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.15),
-              blurRadius: 20,
-              spreadRadius: 2,
-            ),
-          ],
-        ),
-        child: Column(
-          crossAxisAlignment:
-              CrossAxisAlignment.start,
-          children: [
-            ClipRRect(
-              borderRadius:
-                  const BorderRadius.vertical(
-                top: Radius.circular(20),
-              ),
-              child: Image.asset(
-                image,
-                height: 180,
-                width: double.infinity,
-                fit: BoxFit.cover,
-              ),
-            ),
-            Expanded(
-              child: Padding(
-                padding:
-                    const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment:
-                      CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontSize: 22,
-                        fontWeight:
-                            FontWeight.bold,
-                      ),
-                    ),
 
-                    const SizedBox(height: 10),
-
-                    Wrap(
-                      spacing: 8,
-                      runSpacing: 8,
-                      children: const [
-                        _TechChip(
-                          text: "Flutter",
-                        ),
-                        _TechChip(
-                          text: "Dart",
-                        ),
-                        _TechChip(
-                          text: "Firebase",
-                        ),
-                      ],
-                    ),
-
-                    const SizedBox(height: 12),
-
-                    Text(
-                      description,
-                      style: const TextStyle(
-                        color: AppColors.grey,
-                        height: 1.5,
-                      ),
-                    ),
-
-                    const Spacer(),
-
-                    Row(
-                      children: [
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child:
-                                const Text("GitHub"),
-                          ),
-                        ),
-
-                        const SizedBox(width: 10),
-
-                        Expanded(
-                          child: ElevatedButton(
-                            onPressed: () {},
-                            child:
-                                const Text("Demo"),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+          child: Column(
+            children: [
+              ClipRRect(
+                borderRadius:
+                    const BorderRadius.vertical(
+                  top: Radius.circular(28),
+                ),
+                child: AnimatedScale(
+                  duration:
+                      const Duration(
+                    milliseconds: 300,
+                  ),
+                  scale:
+                      hovered ? 1.06 : 1,
+                  child: Image.asset(
+                    widget.image,
+                    height: 220,
+                    width: double.infinity,
+                    fit: BoxFit.cover,
+                  ),
                 ),
               ),
-            ),
-          ],
+
+              Expanded(
+                child: Padding(
+                  padding:
+                      const EdgeInsets.all(
+                    22,
+                  ),
+                  child: Column(
+                    crossAxisAlignment:
+                        CrossAxisAlignment
+                            .start,
+                    children: [
+                      Text(
+                        widget.title,
+                        style:
+                            const TextStyle(
+                          fontSize: 24,
+                          fontWeight:
+                              FontWeight
+                                  .bold,
+                          color:
+                              Colors.white,
+                        ),
+                      ),
+
+                      const SizedBox(
+                          height: 12),
+
+                      Wrap(
+                        spacing: 8,
+                        runSpacing: 8,
+                        children: widget.tech
+                            .map<Widget>(
+                              (tech) =>
+                                  _TechChip(
+                                text: tech,
+                              ),
+                            )
+                            .toList(),
+                      ),
+
+                      const SizedBox(
+                          height: 15),
+
+                      Text(
+                        widget
+                            .description,
+                        style:
+                            const TextStyle(
+                          color:
+                              AppColors.grey,
+                          height: 1.7,
+                        ),
+                      ),
+
+                      const Spacer(),
+
+                      Row(
+                        children: [
+                          Expanded(
+                            child:
+                                ElevatedButton(
+                              onPressed:
+                                  () {},
+                              child:
+                                  const Text(
+                                "GitHub",
+                              ),
+                            ),
+                          ),
+
+                          const SizedBox(
+                              width: 12),
+
+                          Expanded(
+                            child:
+                                OutlinedButton(
+                              onPressed:
+                                  () {},
+                              child:
+                                  const Text(
+                                "Live Demo",
+                              ),
+                            ),
+                          ),
+                        ],
+                      )
+                    ],
+                  ),
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );
@@ -215,23 +352,23 @@ class _TechChip extends StatelessWidget {
     return Container(
       padding:
           const EdgeInsets.symmetric(
-        horizontal: 10,
-        vertical: 6,
+        horizontal: 12,
+        vertical: 7,
       ),
       decoration: BoxDecoration(
         color:
             AppColors.primary.withOpacity(
-          0.15,
+          0.12,
         ),
         borderRadius:
-            BorderRadius.circular(20),
+            BorderRadius.circular(50),
       ),
       child: Text(
         text,
         style: const TextStyle(
           color: AppColors.primary,
-          fontSize: 12,
           fontWeight: FontWeight.w600,
+          fontSize: 12,
         ),
       ),
     );

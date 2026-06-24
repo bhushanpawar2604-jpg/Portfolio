@@ -6,10 +6,10 @@ class AppTheme {
     useMaterial3: true,
     brightness: Brightness.dark,
 
+    fontFamily: 'Poppins',
+
     scaffoldBackgroundColor:
         AppColors.background,
-
-    fontFamily: 'Poppins',
 
     colorScheme: const ColorScheme.dark(
       primary: AppColors.primary,
@@ -19,6 +19,7 @@ class AppTheme {
     appBarTheme: const AppBarTheme(
       backgroundColor: Colors.transparent,
       elevation: 0,
+      centerTitle: false,
     ),
 
     elevatedButtonTheme:
@@ -28,15 +29,16 @@ class AppTheme {
             AppColors.primary,
         foregroundColor:
             Colors.black,
+        elevation: 0,
         padding:
             const EdgeInsets.symmetric(
-          horizontal: 24,
+          horizontal: 26,
           vertical: 18,
         ),
         shape:
             RoundedRectangleBorder(
           borderRadius:
-              BorderRadius.circular(14),
+              BorderRadius.circular(16),
         ),
       ),
     ),
@@ -46,7 +48,24 @@ class AppTheme {
       elevation: 0,
       shape: RoundedRectangleBorder(
         borderRadius:
-            BorderRadius.circular(20),
+            BorderRadius.circular(24),
+      ),
+    ),
+
+    textTheme: const TextTheme(
+      displayLarge: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+      displayMedium: TextStyle(
+        color: Colors.white,
+        fontWeight: FontWeight.bold,
+      ),
+      bodyLarge: TextStyle(
+        color: AppColors.grey,
+      ),
+      bodyMedium: TextStyle(
+        color: AppColors.grey,
       ),
     ),
   );
