@@ -18,9 +18,9 @@ import '../sections/tech_stack_section.dart';
 import '../widgets/background/animated_background.dart';
 import '../widgets/background/background_glow.dart';
 
-import '../widgets/navigation/mobile_drawer.dart';
-import '../widgets/navigation/top_navbar.dart';
-import '../widgets/navigation/scroll_to_top_button.dart';
+import '../widgets/navbar/mobile_drawer.dart';
+import '../widgets/navbar/top_navbar.dart';
+import '../widgets/common/scroll_to_top_button.dart';
 import '../widgets/effects/mouse_glow.dart';
 import '../widgets/effects/floating_particles.dart';
 
@@ -30,7 +30,7 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const MobileDrawer(),
+      drawer: MobileDrawer(),
 
       body: MouseGlow(
         child: Stack(
@@ -84,7 +84,7 @@ class HomePage extends StatelessWidget {
       ),  
 
       floatingActionButton:
-          const ScrollToTopButton(),
+           ScrollToTopButton(),
     );
   }
 }

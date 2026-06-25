@@ -93,25 +93,28 @@ class SkillsSection extends StatelessWidget {
 
           const SizedBox(height: 50),
 
-          GridView.builder(
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            itemCount: skills.length,
-            gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount: isMobile ? 1 : 3,
-              crossAxisSpacing: 25,
-              mainAxisSpacing: 25,
-              childAspectRatio: isMobile ? 1.6 : 1.2,
-            ),
-            itemBuilder: (context, index) {
-              return SkillCard(
-                title: skills[index]["name"],
-                level: skills[index]["level"],
-                icon: skills[index]["icon"],
-                color: skills[index]["color"],
-              );
-            },
-          ),
+         GridView.builder(
+  shrinkWrap: true,
+  physics: const NeverScrollableScrollPhysics(),
+  itemCount: skills.length,
+  gridDelegate:
+      SliverGridDelegateWithFixedCrossAxisCount(
+    crossAxisCount: isMobile ? 1 : 3,
+    crossAxisSpacing: 25,
+    mainAxisSpacing: 25,
+
+    childAspectRatio:
+        isMobile ? 1.35 : 1.15,
+  ),
+  itemBuilder: (context, index) {
+    return SkillCard(
+      title: skills[index]["name"],
+      level: skills[index]["level"],
+      icon: skills[index]["icon"],
+      color: skills[index]["color"],
+    );
+  },
+),
         ],
       ),
     );
@@ -121,7 +124,7 @@ class SkillsSection extends StatelessWidget {
 class SkillCard extends StatefulWidget {
   final String title;
   final int level;
-  final IconData icon;
+  final dynamic icon;
   final Color color;
 
   const SkillCard({
@@ -185,15 +188,20 @@ class _SkillCardState extends State<SkillCard> {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-              radius: 28,
-              backgroundColor:
-                  widget.color.withOpacity(0.15),
-              child: Icon(
-                widget.icon,
-                color: widget.color,
-                size: 26,
-              ),
-            ),
+  radius: 28,
+  backgroundColor: widget.color.withOpacity(0.15),
+  child: widget.icon is IconData
+      ? Icon(
+          widget.icon as IconData,
+          color: widget.color,
+          size: 26,
+        )
+      : FaIcon(
+          widget.icon,
+          color: widget.color,
+          size: 26,
+        ),
+),
 
             const Spacer(),
 

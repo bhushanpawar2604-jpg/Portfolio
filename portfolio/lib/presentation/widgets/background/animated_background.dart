@@ -1,84 +1,56 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
-
-class AnimatedBackground extends StatefulWidget {
+class AnimatedBackground
+    extends StatefulWidget {
   const AnimatedBackground({
     super.key,
   });
 
   @override
-  State<AnimatedBackground> createState() =>
-      _AnimatedBackgroundState();
+  State<AnimatedBackground>
+      createState() =>
+          _AnimatedBackgroundState();
 }
 
 class _AnimatedBackgroundState
-    extends State<AnimatedBackground>
-    with SingleTickerProviderStateMixin {
-  late AnimationController controller;
+    extends State<
+            AnimatedBackground>
+    with
+        SingleTickerProviderStateMixin {
+  late AnimationController
+      controller;
 
   @override
   void initState() {
     super.initState();
 
-    controller = AnimationController(
+    controller =
+        AnimationController(
       vsync: this,
-      duration: const Duration(
-        seconds: 12,
+      duration:
+          const Duration(
+        seconds: 20,
       ),
-    )..repeat(reverse: true);
+    )..repeat();
   }
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(
+      BuildContext context) {
     return AnimatedBuilder(
       animation: controller,
-      builder: (context, child) {
-        return Stack(
-          children: [
-            Positioned(
-              left:
-                  100 +
-                  (controller.value * 80),
-              top:
-                  120 +
-                  (controller.value * 50),
-              child: _circle(
-                AppColors.primary,
-              ),
-            ),
-
-            Positioned(
-              right:
-                  100 +
-                  (controller.value * 60),
-              bottom:
-                  120 +
-                  (controller.value * 40),
-              child: _circle(
-                AppColors.secondary,
-              ),
-            ),
-          ],
+      builder:
+          (context, child) {
+        return CustomPaint(
+          painter:
+              ParticlePainter(
+            controller.value,
+          ),
+          size: Size.infinite,
         );
       },
-    );
-  }
-
-  Widget _circle(Color color) {
-    return Container(
-      width: 250,
-      height: 250,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        boxShadow: [
-          BoxShadow(
-            color: color.withOpacity(0.15),
-            blurRadius: 140,
-            spreadRadius: 60,
-          ),
-        ],
-      ),
     );
   }
 
@@ -86,5 +58,57 @@ class _AnimatedBackgroundState
   void dispose() {
     controller.dispose();
     super.dispose();
+  }
+}
+
+class ParticlePainter
+    extends CustomPainter {
+  final double progress;
+
+  ParticlePainter(
+    this.progress,
+  );
+
+  @override
+  void paint(
+    Canvas canvas,
+    Size size,
+  ) {
+    final paint = Paint()
+      ..color =
+          Colors.white12;
+
+    for (
+      int i = 0;
+      i < 50;
+      i++
+    ) {
+      final dx =
+          (i * 37.0) %
+              size.width;
+
+      final dy =
+          ((i * 91.0) +
+                  progress *
+                      500)
+              %
+              size.height;
+
+      canvas.drawCircle(
+        Offset(dx, dy),
+        Random(i)
+                .nextDouble() *
+            3,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(
+    covariant CustomPainter
+        oldDelegate,
+  ) {
+    return true;
   }
 }

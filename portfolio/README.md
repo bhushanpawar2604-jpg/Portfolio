@@ -1,17 +1,29 @@
-# portfolio
+# Bhushan Pawar Portfolio
 
-A new Flutter project.
+A modern responsive Flutter Web portfolio showcasing my projects, skills, experience and achievements.
 
-## Getting Started
+## Features
 
-This project is a starting point for a Flutter application.
+- Responsive Design
+- Modern UI
+- Flutter Web
+- Animations
+- Glassmorphism
+- Contact Form
+- Project Showcase
 
-A few resources to get you started if this is your first Flutter project:
+## Tech Stack
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+- Flutter
+- Dart
+- Firebase
+- Git
+- GitHub
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Live Demo
+
+(Add Live Link Here)
+
+## Screenshots
+
+(Add screenshots here)

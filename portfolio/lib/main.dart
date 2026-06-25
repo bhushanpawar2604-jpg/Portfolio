@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'core/theme/app_theme.dart';
 import 'presentation/pages/home_page.dart';
+import 'presentation/pages/splash_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -26,7 +27,7 @@ class PortfolioApp extends StatelessWidget {
 
       theme: AppTheme.darkTheme,
 
-      home: const HomePage(),
+      home: const SplashPage(),
     );
   }
 }

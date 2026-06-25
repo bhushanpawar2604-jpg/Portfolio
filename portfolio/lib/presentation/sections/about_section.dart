@@ -104,34 +104,49 @@ class AboutSection extends StatelessWidget {
           ),
 
           const SizedBox(height: 50),
-Wrap(
-  spacing: 15,
-  runSpacing: 15,
-
-            children: [
-              Expanded(
-                child: HighlightCard(
-                  value: "15+",
-                  label: "Projects Built",
-                ),
-              ),
-              SizedBox(width: 15),
-              Expanded(
-                child: HighlightCard(
-                  value: "1+",
-                  label: "Years Learning",
-                ),
-              ),
-              SizedBox(width: 15),
-              Expanded(
-                child: HighlightCard(
-                  value: "100%",
-                  label: "Dedication",
-                ),
-              ),
-          
-            ],
+ResponsiveHelper.isMobile(context)
+    ? Column(
+        children: const [
+          HighlightCard(
+            value: "15+",
+            label: "Projects Built",
           ),
+          SizedBox(height: 15),
+          HighlightCard(
+            value: "1+",
+            label: "Years Learning",
+          ),
+          SizedBox(height: 15),
+          HighlightCard(
+            value: "100%",
+            label: "Dedication",
+          ),
+        ],
+      )
+    : Row(
+        children: const [
+          Expanded(
+            child: HighlightCard(
+              value: "15+",
+              label: "Projects Built",
+            ),
+          ),
+          SizedBox(width: 15),
+          Expanded(
+            child: HighlightCard(
+              value: "1+",
+              label: "Years Learning",
+            ),
+          ),
+          SizedBox(width: 15),
+          Expanded(
+            child: HighlightCard(
+              value: "100%",
+              label: "Dedication",
+            ),
+          ),
+        ],
+      ),
         ],
       ),
     );

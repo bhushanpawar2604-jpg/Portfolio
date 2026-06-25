@@ -1,13 +1,21 @@
+
 class ProjectCard extends StatefulWidget {
   final String title;
   final String description;
   final String image;
+  final List<String> tech;
+
+  final String githubLink;
+  final String liveLink;
 
   const ProjectCard({
     super.key,
     required this.title,
     required this.description,
     required this.image,
+    required this.tech,
+    required this.githubLink,
+    required this.liveLink,
   });
 
   @override
@@ -39,7 +47,8 @@ class _ProjectCardState
           ),
           decoration: BoxDecoration(
             color: AppColors.cardColor,
-            borderRadius: BorderRadius.circular(20),
+            borderRadius:
+                BorderRadius.circular(20),
             border: Border.all(
               color: isHovered
                   ? AppColors.primary
@@ -49,9 +58,9 @@ class _ProjectCardState
               BoxShadow(
                 color: isHovered
                     ? AppColors.primary
-                        .withValues(alpha: 0.20)
+                        .withOpacity(0.20)
                     : Colors.black
-                        .withValues(alpha: 0.15),
+                        .withOpacity(0.15),
                 blurRadius: 25,
                 spreadRadius: 2,
               ),
@@ -124,19 +133,14 @@ class _ProjectCardState
                       Wrap(
                         spacing: 8,
                         runSpacing: 8,
-                        children: const [
-                          _TechChip(
-                            text:
-                                "Flutter",
-                          ),
-                          _TechChip(
-                            text: "Dart",
-                          ),
-                          _TechChip(
-                            text:
-                                "Firebase",
-                          ),
-                        ],
+                        children: widget.tech
+                            .map<Widget>(
+                              (tech) =>
+                                  _TechChip(
+                                text: tech,
+                              ),
+                            )
+                            .toList(),
                       ),
 
                       const SizedBox(
@@ -155,10 +159,18 @@ class _ProjectCardState
 
                       const Spacer(),
 
-                      ProjectButtons(
-                        onGithub: () {},
-                        onDemo: () {},
-                      ),
+                     ProjectButtons(
+  onGithub: () {
+    UrlLauncherService.launchUrlLink(
+      widget.githubLink,
+    );
+  },
+  onDemo: () {
+    UrlLauncherService.launchUrlLink(
+      widget.liveLink,
+    );
+  },
+),
                     ],
                   ),
                 ),

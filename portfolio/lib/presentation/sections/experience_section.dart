@@ -25,7 +25,7 @@ class ExperienceSection extends StatelessWidget {
 {
   "year": "2025",
   "role": "Flutter Developer Intern",
-  "company": "Internship Experience",
+  "company": "ASKTechSolutions",
   "description":
       "Worked on real world Flutter applications, API integrations, state management and responsive user interfaces."
 },

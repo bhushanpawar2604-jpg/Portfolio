@@ -5,50 +5,64 @@ import '../../core/theme/app_colors.dart';
 import '../../core/utils/responsive_helper.dart';
 
 import '../widgets/animations/hover_card.dart';
+import '../../core/services/url_launcher_service.dart';
 
 class ProjectsSection extends StatelessWidget {
   const ProjectsSection({super.key});
 
 static const List<Map<String, dynamic>> projects = [
+ {
+  "title": "E-Commerce Application",
+  "description":
+      "Complete Flutter e-commerce application with authentication, cart, wishlist and Firebase backend.",
+  "image":
+      "assets/images/project1.png",
+  "tech": [
+    "Flutter",
+    "Firebase",
+    "Provider"
+  ],
+
+  "githubLink":
+      "https://github.com/bhushanpawar2604-jpg",
+
+  "liveLink":
+      "https://github.com/bhushanpawar2604-jpg",
+},
+
   {
-    "title": "E-Commerce App",
+    "title": "Moodify Music Application",
     "description":
-        "Full-featured Flutter e-commerce application with authentication, cart management, wishlist, Firebase backend and responsive UI.",
-    "image": "assets/images/project1.png",
-    "tech": [
-      "Flutter",
-      "Firebase",
-      "Provider",
-      "REST API"
-    ],
-    "github": "https://github.com/yourrepo",
-    "live": "",
-  },
-  {
-    "title": "Moodify Music App",
-    "description":
-        "Mood-based music recommendation application with modern UI, personalized suggestions and smooth user experience.",
+        "Music recommendation app based on mood detection.",
     "image": "assets/images/project2.png",
+    "githubLink":
+        "https://github.com/yourusername/moodify",
+    "liveLink":
+        "https://your-demo-link.com",
     "tech": [
       "Flutter",
-      "Firebase",
-      "REST API"
+      "REST API",
+      "Firebase"
     ],
     "github": "https://github.com/yourrepo",
     "live": "",
   },
+
   {
     "title": "Portfolio Website",
     "description":
-        "Responsive Flutter Web portfolio showcasing projects, skills, experience and interactive animations.",
+        "Responsive Flutter Web portfolio.",
     "image": "assets/images/project3.png",
+    "githubLink":
+        "https://github.com/yourusername/portfolio",
+    "liveLink":
+        "https://your-demo-link.com",
     "tech": [
       "Flutter Web",
       "Dart",
       "Responsive UI"
     ],
-    "github": "https://github.com/yourrepo",
-    "live": "",
+     
   },
 ];
 
@@ -112,25 +126,22 @@ static const List<Map<String, dynamic>> projects = [
               crossAxisSpacing: 25,
               mainAxisSpacing: 25,
               childAspectRatio:
-                  isMobile ? 0.82 : 0.92,
+                  isMobile ? 0.65 : 0.92,
             ),
-            itemBuilder: (context, index) {
-              return ProjectCard(
-                title:
-                    projects[index]["title"],
-                description:
-                    projects[index]
-                        ["description"],
-                image:
-                    projects[index]["image"],
-                tech:
-                    projects[index]["tech"],
-                github:
-                    projects[index]["github"],
-                live:
-                    projects[index]["live"],  
-              );
-            },
+           itemBuilder: (context, index) {
+  return ProjectCard(
+    title: projects[index]["title"],
+    description: projects[index]["description"],
+    image: projects[index]["image"],
+    tech: List<String>.from(
+      projects[index]["tech"],
+    ),
+    githubLink:
+        projects[index]["githubLink"],
+    liveLink:
+        projects[index]["liveLink"],
+  );
+},
           ),
         ],
       ),
@@ -142,9 +153,10 @@ class ProjectCard extends StatefulWidget {
   final String title;
   final String description;
   final String image;
-  final List tech;
-  final String github;
-  final String live;
+  final List<String> tech;
+
+  final String githubLink;
+  final String liveLink;
 
   const ProjectCard({
     super.key,
@@ -152,14 +164,15 @@ class ProjectCard extends StatefulWidget {
     required this.description,
     required this.image,
     required this.tech,
-    required this.github,
-    required this.live,
+    required this.githubLink,
+    required this.liveLink,
   });
 
   @override
   State<ProjectCard> createState() =>
       _ProjectCardState();
 }
+
 
 class _ProjectCardState
     extends State<ProjectCard> {
@@ -301,31 +314,32 @@ class _ProjectCardState
                       Row(
                         children: [
                           Expanded(
-                            child:
-                                ElevatedButton(
-                              onPressed:
-                                  () {},
-                              child:
-                                  const Text(
-                                "GitHub",
-                              ),
-                            ),
-                          ),
+  child: ElevatedButton(
+    onPressed: () {
+      UrlLauncherService.launchUrlLink(
+        widget.githubLink,
+      );
+    },
+    child: const Text(
+      "GitHub",
+    ),
+  ),
+),
 
-                          const SizedBox(
-                              width: 12),
+const SizedBox(width: 12),
 
-                          Expanded(
-                            child:
-                                OutlinedButton(
-                              onPressed:
-                                  () {},
-                              child:
-                                  const Text(
-                                "Live Demo",
-                              ),
-                            ),
-                          ),
+Expanded(
+  child: OutlinedButton(
+    onPressed: () {
+      UrlLauncherService.launchUrlLink(
+        widget.liveLink,
+      );
+    },
+    child: const Text(
+      "Live Demo",
+    ),
+  ),
+),
                         ],
                       )
                     ],

@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/theme/app_colors.dart';
-
 class MouseGlow extends StatefulWidget {
   final Widget child;
 
@@ -17,52 +15,45 @@ class MouseGlow extends StatefulWidget {
 
 class _MouseGlowState
     extends State<MouseGlow> {
-  Offset mousePosition = Offset.zero;
+  Offset position = Offset.zero;
 
   @override
   Widget build(BuildContext context) {
     return MouseRegion(
       onHover: (event) {
         setState(() {
-          mousePosition =
+          position =
               event.localPosition;
         });
       },
       child: Stack(
         children: [
-          widget.child,
-
           Positioned(
-            left:
-                mousePosition.dx - 150,
-            top:
-                mousePosition.dy - 150,
+            left: position.dx - 180,
+            top: position.dy - 180,
             child: IgnorePointer(
-              child: AnimatedContainer(
-                duration:
-                    const Duration(
-                  milliseconds: 100,
-                ),
-                width: 300,
-                height: 300,
-                decoration:
-                    BoxDecoration(
-                  shape:
-                      BoxShape.circle,
+              child: Container(
+                width: 360,
+                height: 360,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
                   gradient:
                       RadialGradient(
                     colors: [
-                      AppColors.primary
+                      Colors.cyan
                           .withOpacity(
-                        0.15,
+                        0.12,
                       ),
-                      Colors.transparent,
+                      Colors
+                          .transparent,
                     ],
                   ),
                 ),
               ),
             ),
           ),
+
+          widget.child,
         ],
       ),
     );
