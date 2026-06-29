@@ -128,7 +128,7 @@ class _EducationCardState
         ),
         padding:
             const EdgeInsets.all(
-          25,
+          16,
         ),
         decoration: BoxDecoration(
           borderRadius:
@@ -166,6 +166,7 @@ class _EducationCardState
               : [],
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment:
               CrossAxisAlignment.start,
           children: [
@@ -205,7 +206,7 @@ class _EducationCardState
               widget.degree,
               style:
                   const TextStyle(
-                fontSize: 26,
+                fontSize: 16,
                 fontWeight:
                     FontWeight.bold,
                 color:

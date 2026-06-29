@@ -79,6 +79,7 @@ static const List<Map<String, dynamic>> projects = [
         vertical: 90,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
@@ -248,7 +249,7 @@ class _ProjectCardState
                       hovered ? 1.06 : 1,
                   child: Image.asset(
                     widget.image,
-                    height: 220,
+                    height: 180,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
@@ -259,9 +260,10 @@ class _ProjectCardState
                 child: Padding(
                   padding:
                       const EdgeInsets.all(
-                    22,
+                    18,
                   ),
                   child: Column(
+                    mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment:
                         CrossAxisAlignment
                             .start,

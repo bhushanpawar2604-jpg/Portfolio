@@ -62,6 +62,7 @@ class TechStackSection extends StatelessWidget {
         vertical: 80,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
@@ -98,7 +99,7 @@ class TechStackSection extends StatelessWidget {
                   isMobile ? 2 : 4,
               crossAxisSpacing: 20,
               mainAxisSpacing: 20,
-              childAspectRatio: 1.15,
+              childAspectRatio: 1.35,
             ),
             itemBuilder: (context, index) {
               final tech =
@@ -145,13 +146,11 @@ class TechStackSection extends StatelessWidget {
                     ],
                   ),
                   child: Column(
-                    mainAxisAlignment:
-                        MainAxisAlignment
-                            .center,
+                    mainAxisSize: MainAxisSize.min,
                     children: [
                       Container(
-                        width: 65,
-                        height: 65,
+                        width: 52,
+                        height: 52,
                         decoration:
                             BoxDecoration(
                           color: AppColors
@@ -167,7 +166,7 @@ class TechStackSection extends StatelessWidget {
                         ),
                         child: Icon(
                           tech["icon"],
-                          size: 34,
+                          size: 26,
                           color: AppColors
                               .primary,
                         ),
@@ -188,7 +187,7 @@ class TechStackSection extends StatelessWidget {
                           fontWeight:
                               FontWeight
                                   .w600,
-                          fontSize: 15,
+                          fontSize: 13,
                         ),
                       ),
                     ],

@@ -22,6 +22,7 @@ class AboutSection extends StatelessWidget {
         vertical: 90,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
@@ -171,8 +172,8 @@ class AboutCard extends StatelessWidget {
       child: Row(
         children: [
           Container(
-            width: 60,
-            height: 60,
+            width: 50,
+            height: 50,
             decoration: BoxDecoration(
               color: AppColors.primary
                   .withOpacity(0.12),
@@ -182,7 +183,7 @@ class AboutCard extends StatelessWidget {
             child: Icon(
               icon,
               color: AppColors.primary,
-              size: 28,
+              size: 22,
             ),
           ),
 
@@ -190,6 +191,7 @@ class AboutCard extends StatelessWidget {
 
           Expanded(
             child: Column(
+              mainAxisSize: MainAxisSize.min,
               mainAxisAlignment:
                   MainAxisAlignment.center,
               crossAxisAlignment:
@@ -201,7 +203,7 @@ class AboutCard extends StatelessWidget {
                       const TextStyle(
                     color:
                         Colors.white,
-                    fontSize: 20,
+                    fontSize: 17,
                     fontWeight:
                         FontWeight.bold,
                   ),
@@ -215,6 +217,7 @@ class AboutCard extends StatelessWidget {
                       const TextStyle(
                     color:
                         AppColors.grey,
+                    fontSize: 15,
                   ),
                 ),
               ],
@@ -239,6 +242,11 @@ class HighlightCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GlassContainer(
+  child: Padding(
+    padding: const EdgeInsets.symmetric(
+      vertical: 18,
+      horizontal: 10,
+    ),
       child: Column(
         children: [
           ShaderMask(
@@ -253,7 +261,7 @@ class HighlightCard extends StatelessWidget {
             child: Text(
               value,
               style: const TextStyle(
-                fontSize: 34,
+                fontSize: 28,
                 fontWeight:
                     FontWeight.bold,
                 color: Colors.white,
@@ -272,6 +280,7 @@ class HighlightCard extends StatelessWidget {
           ),
         ],
       ),
+    ),
     );
   }
 }

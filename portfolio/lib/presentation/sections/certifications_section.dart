@@ -20,6 +20,7 @@ horizontal: 30,
 vertical: 80,
 ),
 child: Column(
+  mainAxisSize: MainAxisSize.min,
 crossAxisAlignment: CrossAxisAlignment.start,
 children: [
 const Text(
@@ -39,7 +40,7 @@ color: AppColors.primary,
           margin: const EdgeInsets.only(
             bottom: 15,
           ),
-          padding: const EdgeInsets.all(20),
+          padding: const EdgeInsets.all(18),
           decoration: BoxDecoration(
             color: AppColors.cardColor,
             borderRadius: BorderRadius.circular(15),

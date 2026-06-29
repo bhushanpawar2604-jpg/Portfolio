@@ -43,6 +43,7 @@ class ExperienceSection extends StatelessWidget {
         vertical: 90,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -184,7 +185,7 @@ class _TimelineCardState
                 ),
                 padding:
                     const EdgeInsets.all(
-                  24,
+                  16,
                 ),
                 decoration:
                     BoxDecoration(
@@ -229,6 +230,7 @@ class _TimelineCardState
                       : [],
                 ),
                 child: Column(
+                  mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment:
                       CrossAxisAlignment
                           .start,
@@ -237,7 +239,7 @@ class _TimelineCardState
                       widget.role,
                       style:
                           const TextStyle(
-                        fontSize: 24,
+                        fontSize: 16,
                         fontWeight:
                             FontWeight
                                 .bold,

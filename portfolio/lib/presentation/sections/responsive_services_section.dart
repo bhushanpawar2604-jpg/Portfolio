@@ -25,6 +25,7 @@ class ResponsiveServicesSection
         vertical: 80,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
@@ -56,7 +57,7 @@ class ResponsiveServicesSection
                 isMobile ? 1 : 3,
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
-            childAspectRatio: 1.1,
+            childAspectRatio: 1.3,
             children: const [
               _ServiceCard(
                 icon:
@@ -106,7 +107,7 @@ class _ServiceCard
     return HoverCard(
       child: Container(
         padding:
-            const EdgeInsets.all(24),
+            const EdgeInsets.all(18),
         decoration: BoxDecoration(
           borderRadius:
               BorderRadius.circular(
@@ -131,12 +132,11 @@ class _ServiceCard
           ),
         ),
         child: Column(
-          mainAxisAlignment:
-              MainAxisAlignment.center,
+          mainAxisSize: MainAxisSize.min,
           children: [
             Container(
-              width: 75,
-              height: 75,
+              width: 58,
+              height: 58,
               decoration:
                   BoxDecoration(
                 color:
@@ -152,7 +152,7 @@ class _ServiceCard
               ),
               child: Icon(
                 icon,
-                size: 40,
+                size: 28,
                 color: AppColors.primary,
               ),
             ),
@@ -165,7 +165,7 @@ class _ServiceCard
               title,
               style:
                   const TextStyle(
-                fontSize: 22,
+                fontSize: 18,
                 fontWeight:
                     FontWeight.bold,
               ),

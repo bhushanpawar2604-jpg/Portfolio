@@ -27,13 +27,14 @@ class AchievementsSection
         vertical: 80,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment:
             CrossAxisAlignment.start,
         children: [
           const Text(
             "Achievements",
             style: TextStyle(
-              fontSize: 38,
+              fontSize: 18,
               fontWeight:
                   FontWeight.bold,
               color: AppColors.primary,
@@ -61,7 +62,7 @@ class AchievementsSection
                 child: Container(
                   padding:
                       const EdgeInsets.all(
-                    20,
+                    18,
                   ),
                   decoration: BoxDecoration(
   color: AppColors.cardColor,
@@ -84,7 +85,7 @@ class AchievementsSection
                      const Icon(
   Icons.workspace_premium,
   color: AppColors.primary,
-  size: 28,
+  size: 24,
 ),
 
                       const SizedBox(

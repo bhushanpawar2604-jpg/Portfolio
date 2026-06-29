@@ -59,6 +59,7 @@ class SkillsSection extends StatelessWidget {
         vertical: 90,
       ),
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const Text(
@@ -104,7 +105,7 @@ class SkillsSection extends StatelessWidget {
     mainAxisSpacing: 25,
 
     childAspectRatio:
-        isMobile ? 1.35 : 1.15,
+        isMobile ? 1.55 : 1.35,
   ),
   itemBuilder: (context, index) {
     return SkillCard(
@@ -158,7 +159,7 @@ class _SkillCardState extends State<SkillCard> {
             0.0,
             hovered ? -10.0 : 0.0,
           ),
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.all(18),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(28),
           gradient: LinearGradient(
@@ -185,21 +186,22 @@ class _SkillCardState extends State<SkillCard> {
               : [],
         ),
         child: Column(
+          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             CircleAvatar(
-  radius: 28,
+  radius: 22,
   backgroundColor: widget.color.withOpacity(0.15),
   child: widget.icon is IconData
       ? Icon(
           widget.icon as IconData,
           color: widget.color,
-          size: 26,
+          size: 22,
         )
       : FaIcon(
           widget.icon,
           color: widget.color,
-          size: 26,
+          size: 22,
         ),
 ),
 
@@ -208,13 +210,13 @@ class _SkillCardState extends State<SkillCard> {
             Text(
               widget.title,
               style: const TextStyle(
-                fontSize: 22,
+                fontSize: 18,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
             ),
 
-            const SizedBox(height: 15),
+            const SizedBox(height: 10),
 
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
@@ -235,7 +237,7 @@ class _SkillCardState extends State<SkillCard> {
               style: TextStyle(
                 color: widget.color,
                 fontWeight: FontWeight.bold,
-                fontSize: 16,
+                fontSize: 14,
               ),
             ),
           ],
