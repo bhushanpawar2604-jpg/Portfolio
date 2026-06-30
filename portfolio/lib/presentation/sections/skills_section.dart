@@ -58,10 +58,10 @@ class SkillsSection extends StatelessWidget {
         horizontal: isMobile ? 20 : 40,
         vertical: 90,
       ),
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
+     child: Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  crossAxisAlignment: CrossAxisAlignment.start,
+  children: [
           const Text(
             "MY SKILLS",
             style: TextStyle(
@@ -94,27 +94,22 @@ class SkillsSection extends StatelessWidget {
 
           const SizedBox(height: 50),
 
-         GridView.builder(
-  shrinkWrap: true,
-  physics: const NeverScrollableScrollPhysics(),
-  itemCount: skills.length,
-  gridDelegate:
-      SliverGridDelegateWithFixedCrossAxisCount(
-    crossAxisCount: isMobile ? 1 : 3,
-    crossAxisSpacing: 25,
-    mainAxisSpacing: 25,
-
-    childAspectRatio:
-        isMobile ? 1.55 : 1.35,
-  ),
-  itemBuilder: (context, index) {
-    return SkillCard(
-      title: skills[index]["name"],
-      level: skills[index]["level"],
-      icon: skills[index]["icon"],
-      color: skills[index]["color"],
+        Wrap(
+  spacing: 18,
+  runSpacing: 18,
+  children: skills.map((skill) {
+    return SizedBox(
+     width: isMobile
+    ? double.infinity
+    : 260,
+      child: SkillCard(
+        title: skill["name"],
+        level: skill["level"],
+        icon: skill["icon"],
+        color: skill["color"],
+      ),
     );
-  },
+  }).toList(),
 ),
         ],
       ),
@@ -157,11 +152,14 @@ class _SkillCardState extends State<SkillCard> {
         transform: Matrix4.identity()
           ..translate(
             0.0,
-            hovered ? -10.0 : 0.0,
+            hovered ? -5.0 : 0.0,
           ),
-        padding: const EdgeInsets.all(18),
+        padding: const EdgeInsets.symmetric(
+  horizontal: 16,
+  vertical: 14,
+),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(28),
+          borderRadius: BorderRadius.circular(20),
           gradient: LinearGradient(
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
@@ -185,32 +183,34 @@ class _SkillCardState extends State<SkillCard> {
                 ]
               : [],
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
+        child: IntrinsicHeight(
+  child: IntrinsicHeight(
+  child: Column(
+    mainAxisSize: MainAxisSize.min,
+    crossAxisAlignment: CrossAxisAlignment.start,
+    children: [
             CircleAvatar(
-  radius: 22,
+  radius: 18,
   backgroundColor: widget.color.withOpacity(0.15),
   child: widget.icon is IconData
       ? Icon(
           widget.icon as IconData,
           color: widget.color,
-          size: 22,
+          size: 18,
         )
       : FaIcon(
           widget.icon,
           color: widget.color,
-          size: 22,
+          size: 18,
         ),
 ),
 
-            const Spacer(),
+            const SizedBox(height: 12),
 
             Text(
               widget.title,
               style: const TextStyle(
-                fontSize: 18,
+                fontSize: 16,
                 fontWeight: FontWeight.bold,
                 color: Colors.white,
               ),
@@ -237,10 +237,12 @@ class _SkillCardState extends State<SkillCard> {
               style: TextStyle(
                 color: widget.color,
                 fontWeight: FontWeight.bold,
-                fontSize: 14,
+                fontSize: 12,
               ),
             ),
           ],
+        ),
+  ),
         ),
       ),
     );

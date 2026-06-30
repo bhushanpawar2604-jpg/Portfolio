@@ -26,7 +26,7 @@ class HeroSection extends StatelessWidget {
       width: double.infinity,
       padding: EdgeInsets.symmetric(
         horizontal: isMobile ? 20 : 60,
-        vertical: isMobile ? 60 : 100,
+        vertical: isMobile ? 50 : 70,
       ),
       child: isMobile
           ? const Column(
@@ -47,7 +47,7 @@ class HeroSection extends StatelessWidget {
                   flex: 6,
                   child: _HeroContent(),
                 ),
-                SizedBox(width: 40),
+                SizedBox(width: 25),
                 Expanded(
                   flex: 4,
                   child: Center(
@@ -82,8 +82,8 @@ class _HeroContent extends StatelessWidget {
           Container(
             padding:
                 const EdgeInsets.symmetric(
-              horizontal: 16,
-              vertical: 8,
+              horizontal: 14,
+              vertical: 6,
             ),
             decoration: BoxDecoration(
               borderRadius:
@@ -131,7 +131,7 @@ class _HeroContent extends StatelessWidget {
               PortfolioConfig.name,
               style: TextStyle(
                 fontSize:
-                    isMobile ? 42 : 72,
+                    isMobile ? 38 : 60,
                 fontWeight:
                     FontWeight.bold,
                 color: Colors.white,
@@ -143,7 +143,7 @@ class _HeroContent extends StatelessWidget {
           const SizedBox(height: 20),
 
           SizedBox(
-            height: 50,
+            height: 38,
             child: AnimatedTextKit(
               repeatForever: true,
               animatedTexts: [
@@ -159,8 +159,8 @@ class _HeroContent extends StatelessWidget {
                         TextStyle(
                       fontSize:
                           isMobile
-                              ? 22
-                              : 28,
+                              ? 18
+                              : 22,
                       fontWeight:
                           FontWeight.bold,
                       color:
@@ -183,14 +183,14 @@ class _HeroContent extends StatelessWidget {
               PortfolioConfig.shortBio,
               style: TextStyle(
                 fontSize:
-                    isMobile ? 16 : 18,
+                    isMobile ? 15 : 16,
                 height: 1.8,
                 color: AppColors.grey,
               ),
             ),
           ),
 
-          const SizedBox(height: 35),
+          const SizedBox(height: 25),
 
           Wrap(
             spacing: 15,
@@ -216,7 +216,7 @@ class _HeroContent extends StatelessWidget {
             ],
           ),
 
-          const SizedBox(height: 50),
+          const SizedBox(height: 35),
 
           const StatsSection(),
         ],
@@ -235,30 +235,30 @@ class _ProfileImage extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           Container(
-            width: 340,
-            height: 340,
+            width: 290,
+            height: 290,
             decoration: BoxDecoration(
               shape: BoxShape.circle,
               boxShadow: [
   BoxShadow(
     color: AppColors.cyanGlow
         .withOpacity(0.40),
-    blurRadius: 80,
-    spreadRadius: 20,
+    blurRadius: 50,
+    spreadRadius: 10,
   ),
   BoxShadow(
     color: AppColors.purpleGlow
         .withOpacity(0.25),
-    blurRadius: 100,
-    spreadRadius: 15,
+    blurRadius: 70,
+    spreadRadius: 8,
   ),
 ],
             ),
           ),
 
           Container(
-            width: 320,
-            height: 320,
+            width: 270,
+            height: 270,
             padding:
                 const EdgeInsets.all(5),
             decoration: BoxDecoration(

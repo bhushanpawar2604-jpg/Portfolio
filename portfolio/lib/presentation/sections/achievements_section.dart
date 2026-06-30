@@ -43,67 +43,66 @@ class AchievementsSection
 
           const SizedBox(height: 30),
 
-          GridView.builder(
-            shrinkWrap: true,
-            physics:
-                const NeverScrollableScrollPhysics(),
-            itemCount:
-                achievements.length,
-           gridDelegate:
-    const SliverGridDelegateWithFixedCrossAxisCount(
-  crossAxisCount: 2,
-  crossAxisSpacing: 20,
-  mainAxisSpacing: 20,
-  childAspectRatio: 2.8,
+          Wrap(
+  spacing: 18,
+  runSpacing: 18,
+  children: achievements.map((e) {
+    return SizedBox(
+      width: 320,
+      child: AchievementCard(text: e),
+    );
+  }).toList(),
 ),
-            itemBuilder:
-                (context, index) {
-              return HoverCard(
-                child: Container(
-                  padding:
-                      const EdgeInsets.all(
-                    18,
-                  ),
-                  decoration: BoxDecoration(
-  color: AppColors.cardColor,
-  borderRadius:
-      BorderRadius.circular(24),
-  border: Border.all(
-    color: AppColors.border,
-  ),
-  boxShadow: [
-    BoxShadow(
-      color: Colors.black.withOpacity(
-        0.15,
-      ),
-      blurRadius: 20,
-    ),
-  ],
-),
-                  child: Row(
-                    children: [
-                     const Icon(
-  Icons.workspace_premium,
-  color: AppColors.primary,
-  size: 24,
-),
-
-                      const SizedBox(
-                          width: 15),
-
-                      Expanded(
-                        child: Text(
-                          achievements[
-                              index],
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
         ],
+      ),
+    );
+  }
+}
+
+class AchievementCard extends StatelessWidget {
+  final String text;
+
+  const AchievementCard({
+    super.key,
+    required this.text,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return HoverCard(
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 16,
+          vertical: 16,
+        ),
+        decoration: BoxDecoration(
+          color: AppColors.cardColor,
+          borderRadius: BorderRadius.circular(18),
+          border: Border.all(
+            color: AppColors.border,
+          ),
+        ),
+        child: Row(
+          children: [
+            const Icon(
+              Icons.workspace_premium,
+              color: AppColors.primary,
+              size: 22,
+            ),
+
+            const SizedBox(width: 12),
+
+            Expanded(
+              child: Text(
+                text,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 14,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

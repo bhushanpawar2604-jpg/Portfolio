@@ -88,115 +88,81 @@ class TechStackSection extends StatelessWidget {
 
           const SizedBox(height: 35),
 
-          GridView.builder(
-            shrinkWrap: true,
-            physics:
-                const NeverScrollableScrollPhysics(),
-            itemCount: technologies.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  isMobile ? 2 : 4,
-              crossAxisSpacing: 20,
-              mainAxisSpacing: 20,
-              childAspectRatio: 1.35,
-            ),
-            itemBuilder: (context, index) {
-              final tech =
-                  technologies[index];
-
-              return HoverCard(
-                child: Container(
-                  decoration: BoxDecoration(
-                    gradient:
-                        LinearGradient(
-                      begin:
-                          Alignment.topLeft,
-                      end: Alignment
-                          .bottomRight,
-                      colors: [
-                        Colors.white
-                            .withOpacity(
-                          0.05,
-                        ),
-                        Colors.white
-                            .withOpacity(
-                          0.02,
-                        ),
-                      ],
-                    ),
-                    borderRadius:
-                        BorderRadius
-                            .circular(
-                      24,
-                    ),
-                    border: Border.all(
-                      color:
-                          AppColors.border,
-                    ),
-                    boxShadow: [
-                      BoxShadow(
-                        color: AppColors
-                            .primary
-                            .withOpacity(
-                          0.08,
-                        ),
-                        blurRadius: 20,
-                      ),
-                    ],
-                  ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      Container(
-                        width: 52,
-                        height: 52,
-                        decoration:
-                            BoxDecoration(
-                          color: AppColors
-                              .primary
-                              .withOpacity(
-                            0.12,
-                          ),
-                          borderRadius:
-                              BorderRadius
-                                  .circular(
-                            18,
-                          ),
-                        ),
-                        child: Icon(
-                          tech["icon"],
-                          size: 26,
-                          color: AppColors
-                              .primary,
-                        ),
-                      ),
-
-                      const SizedBox(
-                        height: 18,
-                      ),
-
-                      Text(
-                        tech["name"],
-                        textAlign:
-                            TextAlign.center,
-                        style:
-                            const TextStyle(
-                          color:
-                              Colors.white,
-                          fontWeight:
-                              FontWeight
-                                  .w600,
-                          fontSize: 13,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              );
-            },
-          ),
+          Wrap(
+  spacing: 18,
+  runSpacing: 18,
+  children: technologies.map((tech) {
+    return SizedBox(
+      width: isMobile ? 140 : 180,
+      child: TechCard(tech: tech),
+    );
+  }).toList(),
+),
         ],
+      ),
+    );
+  }
+}
+class TechCard extends StatelessWidget {
+  final Map<String, dynamic> tech;
+
+  const TechCard({
+    super.key,
+    required this.tech,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return HoverCard(
+      child: Container(
+        padding: const EdgeInsets.symmetric(
+          horizontal: 14,
+          vertical: 18,
+        ),
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              Colors.white.withOpacity(0.05),
+              Colors.white.withOpacity(0.02),
+            ],
+          ),
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: AppColors.border,
+          ),
+        ),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Container(
+              width: 48,
+              height: 48,
+              decoration: BoxDecoration(
+                color: AppColors.primary.withOpacity(.12),
+                borderRadius: BorderRadius.circular(14),
+              ),
+              child: Icon(
+                tech["icon"],
+                color: AppColors.primary,
+                size: 24,
+              ),
+            ),
+
+            const SizedBox(height: 12),
+
+            Text(
+              tech["name"],
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 14,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

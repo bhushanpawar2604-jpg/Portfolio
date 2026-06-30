@@ -24,7 +24,7 @@ color: AppColors.primary,
 ),
 ),
 
-      const SizedBox(height: 30),
+      const SizedBox(height: 20),
 
       Row(
         children: const [
@@ -83,34 +83,38 @@ required this.description,
 @override
 Widget build(BuildContext context) {
 return Container(
-padding: const EdgeInsets.all(25),
+padding: const EdgeInsets.symmetric(
+  horizontal: 18,
+  vertical: 16,
+),
 decoration: BoxDecoration(
 color: AppColors.cardColor,
-borderRadius: BorderRadius.circular(20),
+borderRadius: BorderRadius.circular(18),
 border: Border.all(
 color: AppColors.border,
 ),
 ),
 child: Column(
-children: [
+  mainAxisSize: MainAxisSize.min,
+  children: [
 Icon(
 icon,
-size: 40,
+size: 28,
 color: AppColors.primary,
 ),
 
 
-      const SizedBox(height: 15),
+      const SizedBox(height: 10),
 
       Text(
         title,
         style: const TextStyle(
-          fontSize: 20,
+          fontSize: 17,
           fontWeight: FontWeight.bold,
         ),
       ),
 
-      const SizedBox(height: 10),
+      const SizedBox(height: 8),
 
       Text(
         description,

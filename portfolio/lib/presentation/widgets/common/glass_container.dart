@@ -15,28 +15,23 @@ class GlassContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
-      borderRadius:
-          BorderRadius.circular(24),
+      borderRadius: BorderRadius.circular(18),
       child: BackdropFilter(
         filter: ImageFilter.blur(
           sigmaX: 15,
           sigmaY: 15,
         ),
         child: Container(
-          padding:
-              padding ??
-              const EdgeInsets.all(24),
+          padding: padding ??
+              const EdgeInsets.symmetric(
+                horizontal: 16,
+                vertical: 14,
+              ),
           decoration: BoxDecoration(
-            color: Colors.white.withOpacity(
-              0.05,
-            ),
-            borderRadius:
-                BorderRadius.circular(
-              24,
-            ),
+            color: Colors.white.withOpacity(0.05),
+            borderRadius: BorderRadius.circular(18),
             border: Border.all(
-              color: Colors.white
-                  .withOpacity(0.08),
+              color: Colors.white.withOpacity(0.08),
             ),
           ),
           child: child,

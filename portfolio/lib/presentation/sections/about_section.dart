@@ -75,7 +75,7 @@ class AboutSection extends StatelessWidget {
             crossAxisSpacing: 20,
             mainAxisSpacing: 20,
             childAspectRatio:
-                isMobile ? 2.0 : 2.2,
+                isMobile ? 2.6 : 3.3,
             children: const [
               AboutCard(
                 icon: Icons.phone_android,
@@ -187,7 +187,7 @@ class AboutCard extends StatelessWidget {
             ),
           ),
 
-          const SizedBox(width: 18),
+          const SizedBox(width: 12),
 
           Expanded(
             child: Column(
@@ -244,8 +244,8 @@ class HighlightCard extends StatelessWidget {
     return GlassContainer(
   child: Padding(
     padding: const EdgeInsets.symmetric(
-      vertical: 18,
-      horizontal: 10,
+      vertical: 12,
+      horizontal: 8,
     ),
       child: Column(
         children: [

@@ -115,35 +115,25 @@ static const List<Map<String, dynamic>> projects = [
 
           const SizedBox(height: 50),
 
-          GridView.builder(
-            shrinkWrap: true,
-            physics:
-                const NeverScrollableScrollPhysics(),
-            itemCount: projects.length,
-            gridDelegate:
-                SliverGridDelegateWithFixedCrossAxisCount(
-              crossAxisCount:
-                  isMobile ? 1 : 2,
-              crossAxisSpacing: 25,
-              mainAxisSpacing: 25,
-              childAspectRatio:
-                  isMobile ? 0.65 : 0.92,
-            ),
-           itemBuilder: (context, index) {
-  return ProjectCard(
-    title: projects[index]["title"],
-    description: projects[index]["description"],
-    image: projects[index]["image"],
-    tech: List<String>.from(
-      projects[index]["tech"],
-    ),
-    githubLink:
-        projects[index]["githubLink"],
-    liveLink:
-        projects[index]["liveLink"],
-  );
-},
-          ),
+          Wrap(
+  spacing: 25,
+  runSpacing: 25,
+  children: projects.map((project) {
+    return SizedBox(
+      width: isMobile
+          ? double.infinity
+          : (MediaQuery.of(context).size.width - 140) / 2,
+      child: ProjectCard(
+        title: project["title"],
+        description: project["description"],
+        image: project["image"],
+        tech: List<String>.from(project["tech"]),
+        githubLink: project["githubLink"],
+        liveLink: project["liveLink"],
+      ),
+    );
+  }).toList(),
+),
         ],
       ),
     );
@@ -199,7 +189,7 @@ class _ProjectCardState
 
           decoration: BoxDecoration(
             borderRadius:
-                BorderRadius.circular(28),
+                BorderRadius.circular(22),
 
             gradient: LinearGradient(
               begin: Alignment.topLeft,
@@ -233,7 +223,8 @@ class _ProjectCardState
                 : [],
           ),
 
-          child: Column(
+         child: IntrinsicHeight(
+  child: Column(
             children: [
               ClipRRect(
                 borderRadius:
@@ -249,20 +240,21 @@ class _ProjectCardState
                       hovered ? 1.06 : 1,
                   child: Image.asset(
                     widget.image,
-                    height: 180,
+                    height: 110,
                     width: double.infinity,
                     fit: BoxFit.cover,
                   ),
                 ),
               ),
 
-              Expanded(
-                child: Padding(
+            
+                 Padding(
                   padding:
                       const EdgeInsets.all(
-                    18,
+                    12,
                   ),
-                  child: Column(
+                  child: IntrinsicHeight(
+  child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment:
                         CrossAxisAlignment
@@ -272,7 +264,7 @@ class _ProjectCardState
                         widget.title,
                         style:
                             const TextStyle(
-                          fontSize: 24,
+                          fontSize: 20,
                           fontWeight:
                               FontWeight
                                   .bold,
@@ -281,8 +273,7 @@ class _ProjectCardState
                         ),
                       ),
 
-                      const SizedBox(
-                          height: 12),
+                      const SizedBox(height: 8),
 
                       Wrap(
                         spacing: 8,
@@ -298,7 +289,7 @@ class _ProjectCardState
                       ),
 
                       const SizedBox(
-                          height: 15),
+                          height: 10),
 
                       Text(
                         widget
@@ -311,12 +302,15 @@ class _ProjectCardState
                         ),
                       ),
 
-                      const Spacer(),
+                      const SizedBox(height: 15),
 
-                      Row(
-                        children: [
-                          Expanded(
-  child: ElevatedButton(
+                     Wrap(
+  spacing: 10,
+  runSpacing: 10,
+  children: [
+    SizedBox(
+      width: 120,
+      child: ElevatedButton(
     onPressed: () {
       UrlLauncherService.launchUrlLink(
         widget.githubLink,
@@ -330,7 +324,8 @@ class _ProjectCardState
 
 const SizedBox(width: 12),
 
-Expanded(
+SizedBox(
+  width: 120,
   child: OutlinedButton(
     onPressed: () {
       UrlLauncherService.launchUrlLink(
@@ -346,10 +341,12 @@ Expanded(
                       )
                     ],
                   ),
+                 ),
                 ),
-              )
+              
             ],
           ),
+        ),
         ),
       ),
     );
@@ -368,8 +365,8 @@ class _TechChip extends StatelessWidget {
     return Container(
       padding:
           const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 7,
+        horizontal: 10,
+        vertical: 5,
       ),
       decoration: BoxDecoration(
         color:
@@ -384,7 +381,7 @@ class _TechChip extends StatelessWidget {
         style: const TextStyle(
           color: AppColors.primary,
           fontWeight: FontWeight.w600,
-          fontSize: 12,
+          fontSize: 11,
         ),
       ),
     );

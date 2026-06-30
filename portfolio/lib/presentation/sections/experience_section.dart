@@ -128,7 +128,7 @@ class _TimelineCardState
           milliseconds: 250,
         ),
         margin: const EdgeInsets.only(
-          bottom: 30,
+          bottom: 18,
         ),
         child: Row(
           crossAxisAlignment:
@@ -137,8 +137,8 @@ class _TimelineCardState
             Column(
               children: [
                 Container(
-                  width: 60,
-                  height: 60,
+                  width: 46,
+                  height: 46,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color:
@@ -168,7 +168,7 @@ class _TimelineCardState
                 if (!widget.isLast)
                   Container(
                     width: 3,
-                    height: 130,
+                    height: 90,
                     color:
                         AppColors.primary,
                   ),
@@ -185,13 +185,13 @@ class _TimelineCardState
                 ),
                 padding:
                     const EdgeInsets.all(
-                  16,
+                  12,
                 ),
                 decoration:
                     BoxDecoration(
                   borderRadius:
                       BorderRadius.circular(
-                    28,
+                    18,
                   ),
                   gradient:
                       LinearGradient(
